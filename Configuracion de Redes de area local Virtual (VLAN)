@@ -1,0 +1,75 @@
+* SW-CRA1, SW-CRA2
+ena
+conf ter
+vlan 2 
+name CRAA
+exit
+vlan 3
+name Visitas
+exit
+vlan 4
+name Docentes
+exit
+vlan 10
+name Servidor_Radius
+exit
+vlan 101
+name Nativa
+exit
+
+//Pueros de Accesso//
+int r fa0/1-15
+switchport mode access 
+switchport access vlan 2
+exit
+
+int r fa0/16-17
+switchport mode access 
+switchport vlan 10
+exit
+
+//Trunk//
+int gi0/1
+switchport mode trunk 
+switchport trunk allowed vlan 2,3,4,10
+exit
+int fa0/21
+switchport mode trunk 
+switchport trunk allowed vlan 2,3,4,10
+exit
+
+int r fa0/22-24
+switchport mode trunk 
+switchport nonegotiate
+switchport trunk allowed vlan 2,3,4,10
+switchport trunk native vlan 111
+exit
+
+
+ *
+
+/**/
+ * SW-CP1, SW-CP2
+ena
+conf ter
+vlan 2
+name Centro_Computo
+exit
+vlan 3
+name Visitas
+exit
+vlan 4 
+name Docentes
+exit
+
+vlan 101 
+name Nativa
+exit
+ *
+
+
+ /**/
+ *
+
+ 
+ *
