@@ -25,7 +25,7 @@ exit
 
 int r fa0/16-17
 switchport mode access 
-switchport vlan 10
+switchport access vlan 10
 exit
 
 //Trunk//
@@ -46,7 +46,7 @@ switchport trunk native vlan 111
 exit
 
 
- *
+ *************************************************************************
 
 /**/
  * SW-CP1, SW-CP2
@@ -61,15 +61,128 @@ exit
 vlan 4 
 name Docentes
 exit
-
+vlans 10
+name Servidor_Tacacs
+exit
 vlan 101 
 name Nativa
 exit
- *
-
-
- /**/
- *
-
  
- *
+
+
+ //Pueros de Accesso//
+int r fa0/1-15
+switchport mode access 
+switchport access vlan 2
+exit
+
+int r fa0/16-17
+switchport mode access 
+switchport access vvlan 10
+exit
+
+//Trunk//
+int gi0/2
+switchport mode trunk 
+switchport trunk allowed vlan 2,3,4,10
+exit
+int fa0/21
+switchport mode trunk 
+switchport trunk allowed vlan 2,3,4,10
+exit
+
+int r fa0/22-24
+switchport mode trunk 
+switchport nonegotiate
+switchport trunk allowed vlan 2,3,4,10
+switchport trunk native vlan 111
+exit
+
+***************************************************************************
+
+//**SW-Direc**//
+
+enable
+conf ter
+vlan 2
+name Direccion
+exit
+vlan 3
+name Visitas
+exit
+vlan 4
+name Docentes
+exit
+vlan 10
+name Servidor_Tacacs
+exit
+
+//Pueros de Accesso//
+int r fa0/1-15
+switchport mode access 
+switchport access vlan 2
+exit
+
+int r fa0/16-17
+switchport mode access 
+switchport acces vlan 10
+exit
+
+//Trunk//
+int gi0/2
+switchport mode trunk 
+switchport trunk allowed vlan 2,3,4,10
+exit
+int fa0/21
+switchport mode trunk 
+switchport trunk allowed vlan 2,3,4,10
+exit
+
+int r fa0/22-24
+switchport mode trunk 
+switchport nonegotiate
+switchport trunk allowed vlan 2,3,4,10
+switchport trunk native vlan 111
+exit
+
+
+***************************************************************************
+
+//**SW-SEC1 SW-SEC2**//
+
+enable
+conf ter
+vlan 2
+name Visitas
+exit
+vlan 4
+name Docentes
+exit
+
+//Pueros de Accesso//
+int r fa0/1-15
+switchport mode access 
+switchport access vlan 2
+exit
+
+int r fa0/16-17
+switchport mode access 
+switchport access vlan 4
+exit
+
+//Trunk//
+int gi0/2
+switchport mode trunk 
+switchport trunk allowed vlan 2,4
+exit
+int fa0/21
+switchport mode trunk 
+switchport trunk allowed vlan 2,4
+exit
+
+int r fa0/21-24
+switchport mode trunk 
+switchport nonegotiate
+switchport trunk allowed vlan 2,4
+switchport trunk native vlan 111
+exit
