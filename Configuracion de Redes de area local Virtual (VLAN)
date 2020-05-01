@@ -1,7 +1,8 @@
 * SW-CRA1, SW-CRA2
 ena
 conf ter
-vlan 2 
+
+vlan 6
 name CRAA
 exit
 vlan 3
@@ -10,7 +11,7 @@ exit
 vlan 4
 name Docentes
 exit
-vlan 10
+vlan 11
 name Servidor_Radius
 exit
 vlan 101
@@ -20,29 +21,39 @@ exit
 //Pueros de Accesso//
 int r fa0/1-15
 switchport mode access 
-switchport access vlan 2
+switchport access vlan 6
+spanning-tree portfast
+spanning-tree bpduguard enable
+switchport trunk native vlan 101
 exit
 
-int r fa0/16-17
+int fa0/16
 switchport mode access 
-switchport access vlan 10
+switchport access vlan 11
+spanning-tree bpduguard enable
+spanning-tree portfast
+switchport trunk native vlan 101
 exit
 
 //Trunk//
 int gi0/1
 switchport mode trunk 
-switchport trunk allowed vlan 2,3,4,10
+switchport trunk allowed vlan 3,4,6,11
+switchport nonegotiate
+switchport trunk native vlan 101
 exit
 int fa0/21
 switchport mode trunk 
-switchport trunk allowed vlan 2,3,4,10
+switchport trunk allowed vlan 3,4,6,11
+switchport nonegotiate
+switchport trunk native vlan 101
 exit
 
 int r fa0/22-24
 switchport mode trunk 
 switchport nonegotiate
-switchport trunk allowed vlan 2,3,4,10
-switchport trunk native vlan 111
+switchport trunk allowed vlan 3,4,6,11
+switchport trunk native vlan 101
 exit
 
 
@@ -52,7 +63,7 @@ exit
  * SW-CP1, SW-CP2
 ena
 conf ter
-vlan 2
+vlan 7
 name Centro_Computo
 exit
 vlan 3
@@ -61,41 +72,49 @@ exit
 vlan 4 
 name Docentes
 exit
-vlans 10
+vlan 10
 name Servidor_Tacacs
 exit
 vlan 101 
 name Nativa
 exit
- 
-
 
  //Pueros de Accesso//
 int r fa0/1-15
 switchport mode access 
-switchport access vlan 2
+switchport access vlan 7
+spanning-tree portfast
+switchport trunk native vlan 101
+spanning-tree bpduguard enable
 exit
 
-int r fa0/16-17
+int fa0/16
 switchport mode access 
-switchport access vvlan 10
+switchport access vlan 10
+spanning-tree bpduguard enable
+spanning-tree portfast
+switchport trunk native vlan 101
 exit
 
 //Trunk//
 int gi0/2
 switchport mode trunk 
-switchport trunk allowed vlan 2,3,4,10
+switchport trunk allowed vlan 3,4,7,10
+switchport nonegotiate
+switchport trunk native vlan 101
 exit
 int fa0/21
 switchport mode trunk 
-switchport trunk allowed vlan 2,3,4,10
+switchport trunk allowed vlan 3,4,7,10
+switchport nonegotiate
+switchport trunk native vlan 101
 exit
 
 int r fa0/22-24
 switchport mode trunk 
 switchport nonegotiate
-switchport trunk allowed vlan 2,3,4,10
-switchport trunk native vlan 111
+switchport trunk allowed vlan 3,4,7,10
+switchport trunk native vlan 101
 exit
 
 ***************************************************************************
@@ -104,7 +123,7 @@ exit
 
 enable
 conf ter
-vlan 2
+vlan 5
 name Direccion
 exit
 vlan 3
@@ -118,31 +137,35 @@ name Servidor_Tacacs
 exit
 
 //Pueros de Accesso//
-int r fa0/1-15
+int r fa0/1-4
 switchport mode access 
-switchport access vlan 2
+switchport access vlan 5
+spanning-tree portfast
+switchport trunk native vlan 101
+spanning-tree bpduguard enable
 exit
 
-int r fa0/16-17
+int fa0/16
 switchport mode access 
 switchport acces vlan 10
+spanning-tree bpduguard enable
+spanning-tree portfast
+switchport trunk native vlan 101
 exit
 
 //Trunk//
-int gi0/2
+int r fa0/21-22
 switchport mode trunk 
-switchport trunk allowed vlan 2,3,4,10
-exit
-int fa0/21
-switchport mode trunk 
-switchport trunk allowed vlan 2,3,4,10
+switchport trunk allowed vlan 3,4,5,10
+switchport nonegotiate
+switchport trunk native vlan 101
 exit
 
-int r fa0/22-24
+int fa0/19
 switchport mode trunk 
+switchport trunk allowed vlan 3,4,5,10
 switchport nonegotiate
-switchport trunk allowed vlan 2,3,4,10
-switchport trunk native vlan 111
+switchport trunk native vlan 101
 exit
 
 
@@ -157,32 +180,4 @@ name Visitas
 exit
 vlan 4
 name Docentes
-exit
-
-//Pueros de Accesso//
-int r fa0/1-15
-switchport mode access 
-switchport access vlan 2
-exit
-
-int r fa0/16-17
-switchport mode access 
-switchport access vlan 4
-exit
-
-//Trunk//
-int gi0/2
-switchport mode trunk 
-switchport trunk allowed vlan 2,4
-exit
-int fa0/21
-switchport mode trunk 
-switchport trunk allowed vlan 2,4
-exit
-
-int r fa0/21-24
-switchport mode trunk 
-switchport nonegotiate
-switchport trunk allowed vlan 2,4
-switchport trunk native vlan 111
 exit
