@@ -1,0 +1,45 @@
+
+
+=========SW-CRAA1,2
+spanning-tree vlan 6 root primary 
+spanning-tree vlan 11 root primary
+spanning-tree vlan 3 root secondary 
+spanning-tree vlan 4 root secondary 
+
+=====Centro computo
+spanning-tree vlan 7 root primary 
+spanning-tree vlan 3 root secondary 
+spanning-tree vlan 4 root secondary 
+
+
+=====Sectores
+spanning-tree vlan 3 root primary 
+spanning-tree vlan 4 root secondary 
+
+====Direccion
+spanning-tree vlan 5 root primary 
+spanning-tree vlan 10 root primary 
+spanning-tree vlan 3 root secondary 
+spanning-tree vlan 4 root secondary 
+
+
+====Center1
+spanning-tree vlan 5 root primary 
+spanning-tree vlan 6 root primary 
+spanning-tree vlan 10 root primary 
+spanning-tree vlan 11 root primary
+spanning-tree vlan 3 root secondary 
+spanning-tree vlan 4 root secondary
+spanning-tree vlan 7 root secondary
+
+====Center2
+spanning-tree vlan 5 root secondary 
+spanning-tree vlan 6 root secondary 
+spanning-tree vlan 10 root secondary 
+spanning-tree vlan 11 root secondary
+
+spanning-tree vlan 3 root primary 
+spanning-tree vlan 4 root primary
+spanning-tree vlan 7 root primary
+
+ 

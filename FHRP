@@ -1,0 +1,93 @@
+======SW-Center1
+=Activo
+interface vlan 5
+standby version 2
+standby 5 ip 192.168.6.1
+standby 5 preempt
+standby 5 priority 110
+
+interface vlan 6
+standby version 2
+standby 6 ip 192.168.2.1
+standby 6 preempt
+standby 6 priority 110
+
+interface vlan 10
+standby version 2
+standby 10 ip 192.168.8.1
+standby 10 preempt
+standby 10 priority 110
+
+interface vlan 11
+standby version 2
+standby 11 ip 192.168.5.1
+standby 11 preempt
+standby 11 priority 110
+
+=Espera
+interface vlan 3
+standby version 2
+standby 3 ip 192.168.3.1
+standby 3 preempt
+standby 3 priority 100
+
+interface vlan 4
+standby version 2
+standby 4 ip 192.168.4.1
+standby 4 preempt
+standby 4 priority 100
+
+interface vlan 7
+standby version 2
+standby 7 ip 192.168.7.1
+standby 7 preempt
+standby 7 priority 100
+
+=======================================
+
+
+======SW-Center2
+=Espera 
+interface vlan 5
+standby version 2
+standby 5 ip 192.168.6.1
+standby 5 preempt
+standby 5 priority 100
+
+interface vlan 6
+standby version 2
+standby 6 ip 192.168.2.1
+standby 6 preempt
+standby 6 priority 100
+
+interface vlan 10
+standby version 2
+standby 10 ip 192.168.8.1
+standby 10 preempt
+standby 10 priority 100
+
+interface vlan 11
+standby version 2
+standby 11 ip 192.168.5.1
+standby 11 preempt
+standby 11 priority 100
+
+=Activo
+interface vlan 3
+standby version 2
+standby 3 ip 192.168.3.1
+standby 3 preempt
+standby 3 priority 110
+
+interface vlan 4
+standby version 2
+standby 4 ip 192.168.4.1
+standby 4 preempt
+standby 4 priority 110
+
+interface vlan 7
+standby version 2
+standby 7 ip 192.168.7.1
+standby 7 preempt
+standby 7 priority 110
+

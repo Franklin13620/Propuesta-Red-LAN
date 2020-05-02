@@ -72,9 +72,6 @@ exit
 vlan 4 
 name Docentes
 exit
-vlan 10
-name Servidor_Tacacs
-exit
 vlan 101 
 name Nativa
 exit
@@ -88,33 +85,25 @@ switchport trunk native vlan 101
 spanning-tree bpduguard enable
 exit
 
-int fa0/16
-switchport mode access 
-switchport access vlan 10
-spanning-tree bpduguard enable
-spanning-tree portfast
-switchport trunk native vlan 101
-exit
-
 //Trunk//
 int gi0/2
 switchport mode trunk 
-switchport trunk allowed vlan 3,4,7,10
+switchport trunk allowed vlan 3,4,7
 switchport nonegotiate
 switchport trunk native vlan 101
 exit
 int fa0/21
 switchport mode trunk 
-switchport trunk allowed vlan 3,4,7,10
+switchport trunk allowed vlan 3,4,7
 switchport nonegotiate
 switchport trunk native vlan 101
 exit
 
 int r fa0/22-24
-switchport mode trunk 
-switchport nonegotiate
-switchport trunk allowed vlan 3,4,7,10
-switchport trunk native vlan 101
+no switchport mode trunk 
+no switchport nonegotiate
+no switchport trunk allowed vlan 3,4,7
+no switchport trunk native vlan 101
 exit
 
 ***************************************************************************
@@ -155,15 +144,15 @@ exit
 
 //Trunk//
 int r fa0/21-22
-switchport mode trunk 
-switchport trunk allowed vlan 3,4,5,10
-switchport nonegotiate
-switchport trunk native vlan 101
+no switchport mode trunk 
+no switchport trunk allowed vlan 3,4,5,10
+no switchport nonegotiate
+no switchport trunk native vlan 101
 exit
 
 int fa0/19
 switchport mode trunk 
-switchport trunk allowed vlan 3,4,5,10
+switchport trunk allowed vlan 3,4
 switchport nonegotiate
 switchport trunk native vlan 101
 exit
@@ -175,9 +164,23 @@ exit
 
 enable
 conf ter
-vlan 2
+vlan 3
 name Visitas
 exit
 vlan 4
 name Docentes
 exit
+
+int r fa0/21-22
+switchport mode trunk
+switchport nonegotiate
+switchport trunk allowed vlan 3,4
+switchport trunk native vlan 101
+exit
+
+
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport nonegotiate
+switchport trunk allowed vlan 3,4,5,6,7,10,11
+switchport trunk native vlan 101

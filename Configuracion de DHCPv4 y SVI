@@ -2,31 +2,45 @@
 ip dhcp excluded-address 192.168.2.1 192.168.2.5
 ip dhcp excluded-address 192.168.3.1 192.168.3.5
 ip dhcp excluded-address 192.168.4.1 192.168.4.5
-ip dhcp excluded-address 192.168.5.1 192.168.5.5
-
 ip dhcp excluded-address 192.168.6.1 192.168.6.5
 ip dhcp excluded-address 192.168.7.1 192.168.7.5
-ip dhcp excluded-address 192.168.8.1 192.168.8.5
-ip dhcp excluded-address 192.168.9.1 192.168.9.5
 
+ip dhcp excluded-address 192.168.5.1 192.168.5.5
+ip dhcp excluded-address 192.168.8.1 192.168.9.5
+
+// Pools
 ip dhcp pool CRAA
 network 192.168.2.0 255.255.255.224
 default-router 192.168.2.2
+dns-server 192.168.2.4
+domain-name ftorres.com
 
-ip dhcp pool Visitas1
+ip dhcp pool Visitas
 network 192.168.3.0 255.255.255.0
 default-router 192.168.3.2
+dns-server 192.168.3.4
+domain-name ftorres.com
 
-ip dhcp pool Docentes1
+ip dhcp pool Docentes
 network 192.168.4.0 255.255.255.192
 default-router 192.168.4.2
+dns-server 192.168.4.4
+domain-name ftorres.com
+
+ip dhcp pool CentroComputo
+network 192.168.7.0 255.255.255.224
+default-router 192.168.7.2
+dns-server 192.168.7.4
+domain-name ftorres.com
+
+ip dhcp pool Direccion
+network 192.168.6.0 255.255.255.248
+default-router 192.168.6.2
+dns-server 192.168.6.4
+domain-name ftorres.com
 
 
-int vlan 6
-ip add 192.168.2.2 255.255.255.224
-no shu
-exit
-
+//SW-Center1
 int vlan 3
 ip add 192.168.3.2 255.255.255.0
 no shu
@@ -36,7 +50,90 @@ int vlan 4
 ip add 192.168.4.2 255.255.255.192
 exit
 
+int vlan 5
+ip add 192.168.6.2 255.255.255.248
+exit
+
+int vlan 6
+ip add 192.168.2.2 255.255.255.224
+no shu
+exit
+
+int vlan 7
+ip add 192.168.7.2 255.255.255.224
+no shu
+exit 
+
+int vlan 10
+ip add 192.168.8.2 255.255.255.248
+no shu
+
 int vlan 11
 ip add 192.168.5.2 255.255.255.248
 no shu
+
+// SW-Center2 =======================
+int vlan 3
+ip add 192.168.3.3 255.255.255.0
+no shu
+exit
+
+int vlan 4
+ip add 192.168.4.3 255.255.255.192
+exit
+
+int vlan 5
+ip add 192.168.6.3 255.255.255.248
+exit
+
+int vlan 6
+ip add 192.168.2.3 255.255.255.224
+no shu
+exit
+
+int vlan 7
+ip add 192.168.7.3 255.255.255.224
+no shu
+exit 
+
+int vlan 10
+ip add 192.168.8.3 255.255.255.248
+no shu
+
+int vlan 11
+ip add 192.168.5.3 255.255.255.248
+no shu
+
+
+ip dhcp pool CRAA
+network 192.168.2.0 255.255.255.224
+default-router 192.168.2.3
+dns-server 192.168.2.4
+domain-name ftorres.com
+
+ip dhcp pool Visitas
+network 192.168.3.0 255.255.255.0
+default-router 192.168.3.3
+dns-server 192.168.3.4
+domain-name ftorres.com
+
+ip dhcp pool Docentes
+network 192.168.4.0 255.255.255.192
+default-router 192.168.4.3
+dns-server 192.168.4.4
+domain-name ftorres.com
+
+ip dhcp pool CentroComputo
+network 192.168.7.0 255.255.255.224
+default-router 192.168.7.3
+dns-server 192.168.7.4
+domain-name ftorres.com
+
+ip dhcp pool Direccion
+network 192.168.6.0 255.255.255.248
+default-router 192.168.6.3
+dns-server 192.168.6.4
+domain-name ftorres.com
+
+
 
