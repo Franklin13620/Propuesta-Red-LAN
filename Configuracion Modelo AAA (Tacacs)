@@ -1,0 +1,37 @@
+// Configuracion
+Direccion Servidor_Tacacs: 192.168.8.6
+Puerta de enlaze: 192.168.8.3
+
+//Configuracion de SYSLOG y NTP
+logging on
+logging host 192.168.8.6
+logging userinfo
+login on-success log
+login on-failure log
+service timestamps log datetime msec
+ntp server 192.168.8.6
+ntp update-calendar
+
+ip domain name ftorres.com
+ip ssh version 2
+crypto key generate rsa : 1024
+
+//configurando AAA y la lista remota
+aaa new-model 
+aaa authentication login STacacs_CEFRAM group tacacs+ local enable 
+aaa authentication enable default group tacacs+ local enable
+
+//Autentica Router
+tacacs-server host 192.168.8.6 key 072517
+
+//shh
+username admin privilege 15 secret admin
+no username admin secret admin
+line vty 0 15
+transport input ssh
+login authentication STacacs_CEFRAM
+privilege level 15
+
+enable secret level 2 5 $1$mERr$vTbHul1N28cEp8lkLqr0f
+ 
+ enable password level 15 admin

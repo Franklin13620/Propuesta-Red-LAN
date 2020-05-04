@@ -1,0 +1,32 @@
+ip: 192.168.5.6
+mask: 255.255.255.248
+gateway: 192.168.5.2
+dns-server: 192.168.5.4
+
+/Configuracion de SYSLOG y NTP
+logging on
+logging host 192.168.5.6
+logging userinfo
+login on-success log
+login on-failure log
+service timestamps log datetime msec
+ntp server 192.168.5.6
+ntp update-calendar
+
+ip domain name ftorres.com
+ip ssh version 2
+crypto key generate rsa : 1024
+
+//configurando AAA y la lista remota
+aaa new-model 
+aaa authentication login SRadius_CEFRAM group radius local enable 
+aaa authentication enable default group radius local enable
+
+//Autentica Router
+radius-server host 192.168.5.6 key 072517
+
+//shh
+username admin secret 072517
+line vty 0 15
+transport input ssh
+login authentication SRadius_CEFRAM

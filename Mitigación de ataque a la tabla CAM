@@ -1,0 +1,11 @@
+
+// Limitar direcciones a la tabla CAM
+// Solo aprender 4 direcciones MAC y si hay violacion apagarse en un tiempo de 
+evejesimiento de 5 minutos
+
+
+switchport port-security
+Switchport port-security maximum 4
+switchport port-security mac-address sticky
+switchport port-security aging time 5
+switchport port-security violation shutdown

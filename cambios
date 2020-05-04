@@ -1,0 +1,10 @@
+
+switchport trunk native vlan 101
+spanning-tree portfast
+spanning-tree bpduguard enable
+ip dhcp snooping trust
+switchport port-security
+Switchport port-security maximum 4
+switchport port-security mac-address sticky
+switchport port-security aging time 5
+switchport port-security violation shutdown

@@ -1,0 +1,31 @@
+SW-CRAA1,2
+ip arp inspection vlan 3,4,6,11
+
+int r fa0/21-24
+ip arp inspection trust
+exit
+int gi0/1
+ip arp inspection trust
+exit
+
+SW-Center1,2
+ip arp inspection vlan 3-7,10-11
+*todos troncoles*
+ip arp inspection trust
+
+
+SW-Direcc
+ip arp inspection vlan 3,4,5,10
+*todos troncoles*
+ip arp inspection trust
+
+
+SW-Centro Computo
+ip arp inspection vlan 3,4,7
+*todos troncoles*
+ip arp inspection trust
+
+SW-Sectores
+ip arp inspection vlan 3,4
+*todos troncoles*
+ip arp inspection trust
